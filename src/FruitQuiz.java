@@ -1,3 +1,4 @@
+
 //    Copyright (c) The League of Amazing Programmers 2013-2017
 //    Level 0
 
@@ -15,6 +16,10 @@ public class FruitQuiz extends KeyAdapter {
 		question1 = new JLabel(
 				"<html>Which is not a real fruit? <br> A: Dragon Fruit <br> B: Durian <br> C: Crazyberry</html>");
 		// 11. Make another question called "question2". Use question1 above as a guide.
+		question2 = new JLabel(
+				"<html>Which is not a real vegetable? <br> A: Tomato <br> B: Corn<br> C: Eggplant</html>");
+		question3 = new JLabel("<html>Which is not edible? <br> A: Gum<br> B: Jacob Perez<br> C: Nintendo Switch</html>");
+		question4 = new JLabel("<html>Which is not venmous? <br> A: Rattlesnake<br> B: Poison Dart Frog<br> C: Black Widow</html>");
 	}
 
 	@Override
@@ -35,17 +40,43 @@ public class FruitQuiz extends KeyAdapter {
 
 		if (question1.isShowing()) {
 			// 3. If they selected the right fruit, do steps 4 and 7
-			if(keyCode == c) {
+			if (keyCode == c) {
 				correct();
+				nextQuestion(question2);
 			}
 			// 4. Call the correct() method
 
 			// 7. Use the nextQuestion() method to go to question2
 
 			// 8. else (if they touched something else)
-
+			else {
+				incorrect();
+			}
 			// 9. Call the incorrect() method
 
+		}
+		if (question2.isShowing()) {
+			if (keyCode == a) {
+				correct();
+				nextQuestion(question3);
+			} else {
+				incorrect();
+			}
+		}
+		if (question3.isShowing()) {
+			if (keyCode == c) {
+				correct();
+				nextQuestion(question4);
+			} else {
+				incorrect();
+			}
+		}
+		if (question4.isShowing()) {
+			if (keyCode == b) {
+				correct();
+			} else {
+				incorrect();
+			}
 		}
 
 	}
@@ -54,13 +85,14 @@ public class FruitQuiz extends KeyAdapter {
 		// 5. Find a sound for when they get a question right, and drag it into
 		// the default package. It must be a .wav file.
 		// There are lots on freesound.org
+		playSound("correct.wav");
 		// 6. Use the playSound method to play your sound
-
 	}
 
 	private void incorrect() {
 		// 10. Find a sound for wrong answers and put it in the default package. Use the
 		// playSound method to play it.
+		playSound("wrong.wav");
 
 	}
 
